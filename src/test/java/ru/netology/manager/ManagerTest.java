@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
+import ru.netology.repository.NotFoundException;
 import ru.netology.repository.ProductRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,6 +30,28 @@ class ManagerTest {
         manager.add(smartphone2);
         manager.add(smartphone3);
     }
+
+    @Test
+    void shouldFindById(){
+        Product[] expected = {new Book(1,"Yellow arrow", 100, "Pelevin")};
+        Product[] actual = repository.findById(1);
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldRemoveById(){
+        Product[] expected = new Product[]{book2, smartphone1, smartphone2, smartphone3};
+        Product[] actual = repository.removeById(1);
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldNotFoundById(){
+        Product[] expected = new Product[]{null};
+        Product[] actual = repository.findById(11);
+        assertArrayEquals(expected, actual);
+    }
+
 
     @Test
     void shouldSearchByAuthor(){

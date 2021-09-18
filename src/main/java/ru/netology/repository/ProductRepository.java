@@ -6,6 +6,7 @@ public class ProductRepository {
 
     private Product[] items = new Product[0];
 
+
     public void save(Product item) {
         int lenght = items.length + 1;
         Product[] tmp = new Product[lenght];
@@ -20,16 +21,20 @@ public class ProductRepository {
     }
 
     public Product[] findById(int id) {
+
+        Product[] t = new Product[1];
         for (Product item : items) {
             if (item.getId() == id) {
-                return items;
+                t[0] = item;
             }
         }
-        return null;
+        return t;
     }
 
-    public void removeById(int id) {
-
+    public Product[] removeById(int id) {
+        if (findById(id) == null) {
+            throw new NotFoundException("Element with id:" + id + " not found ");
+        }
         int lenght = items.length - 1;
         Product[] tmp = new Product[lenght];
         int index = 0;
@@ -41,5 +46,6 @@ public class ProductRepository {
         }
         // замена элементов после удаления
         items = tmp;
+        return tmp;
     }
     }
