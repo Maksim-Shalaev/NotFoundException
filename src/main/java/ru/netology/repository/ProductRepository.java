@@ -31,6 +31,8 @@ public class ProductRepository {
         return t;
     }
 
+
+
     public Product[] removeById(int id) {
         if (findById(id) == null) {
             throw new NotFoundException("Element with id:" + id + " not found ");
@@ -44,7 +46,6 @@ public class ProductRepository {
                 index++;
             }
         }
-        // замена элементов после удаления
         items = tmp;
         return tmp;
     }

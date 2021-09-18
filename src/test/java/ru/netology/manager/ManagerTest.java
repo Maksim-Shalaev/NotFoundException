@@ -21,7 +21,6 @@ class ManagerTest {
     private Smartphone smartphone2  = new Smartphone(4, "Galaxy", 700, "Samsung");
     private Smartphone smartphone3 = new Smartphone(5, "Galaxy1", 750, "Samsung");
 
-
     @BeforeEach
     public void setUp(){
         manager.add(book1);
