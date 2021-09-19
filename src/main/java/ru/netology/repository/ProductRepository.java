@@ -20,18 +20,16 @@ public class ProductRepository {
         return items;
     }
 
-    public Product[] findById(int id) {
-
-        Product[] t = new Product[1];
+    public Product findById(int id) {
+        Product t = null;
         for (Product item : items) {
             if (item.getId() == id) {
-                t[0] = item;
+                t = item;
+                return t;
             }
         }
         return t;
     }
-
-
 
     public Product[] removeById(int id) {
         if (findById(id) == null) {
@@ -49,4 +47,4 @@ public class ProductRepository {
         items = tmp;
         return tmp;
     }
-    }
+}
